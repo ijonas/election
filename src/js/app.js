@@ -29,28 +29,28 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
 
-      App.listenForEvents();
+      // App.listenForEvents();
 
       return App.render();
     });
   },
 
   // Listen for events emitted from the contract
-  listenForEvents: function() {
-    App.contracts.Election.deployed().then(function(instance) {
-      // Restart Chrome if you are unable to receive this event
-      // This is a known issue with Metamask
-      // https://github.com/MetaMask/metamask-extension/issues/2393
-      instance.votedEvent({}, {
-        fromBlock: 0,
-        toBlock: 'latest'
-      }).watch(function(error, event) {
-        console.log("event triggered", event)
-        // Reload when a new vote is recorded
-        App.render();
-      });
-    });
-  },
+  // listenForEvents: function() {
+  //   App.contracts.Election.deployed().then(function(instance) {
+  //     // Restart Chrome if you are unable to receive this event
+  //     // This is a known issue with Metamask
+  //     // https://github.com/MetaMask/metamask-extension/issues/2393
+  //     instance.votedEvent({}, {
+  //       fromBlock: 0,
+  //       toBlock: 'latest'
+  //     }).watch(function(error, event) {
+  //       console.log("event triggered", event)
+  //       // Reload when a new vote is recorded
+  //       App.render();
+  //     });
+  //   });
+  // },
 
   render: function() {
     var electionInstance;
@@ -94,7 +94,7 @@ App = {
           candidatesSelect.append(candidateOption);
         });
       }
-      return electionInstance.voters(App.account);
+      // return electionInstance.voters(App.account);
     }).then(function(hasVoted) {
       // Do not allow a user to vote
       if(hasVoted) {
